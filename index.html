@@ -1,0 +1,522 @@
+<!DOCTYPE html>
+<html lang="id" class="scroll-smooth">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>SMKS Patriot 2 Bekasi - Sekolah Pusat Keunggulan</title>
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Google Fonts: Nunito -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200..1000;1,200..1000&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- Favicon Placeholder -->
+    <link
+      rel="icon"
+      href="https://placehold.co/32x32/0284c7/FFFFFF?text=P"
+      type="image/png"
+    />
+
+    <!-- Custom Styles -->
+    <style>
+      body {
+        font-family: "Nunito", sans-serif;
+      }
+      /* Style untuk transisi dan animasi */
+      .card-hover {
+        transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+      }
+      .card-hover:hover {
+        transform: translateY(-8px);
+        box-shadow: 0 20px 25px -5px rgb(0 0 0 / 0.1),
+          0 8px 10px -6px rgb(0 0 0 / 0.1);
+      }
+      /* Animasi fade-in sederhana */
+      @keyframes fadeIn {
+        from {
+          opacity: 0;
+          transform: translateY(20px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+      .fade-in {
+        animation: fadeIn 0.8s ease-out forwards;
+      }
+    </style>
+  </head>
+  <body class="bg-gray-100 text-gray-800">
+    <!-- Header & Navigation -->
+    <header
+      id="header"
+      class="bg-white/80 backdrop-blur-lg shadow-sm sticky top-0 z-50"
+    >
+      <nav
+        class="container mx-auto px-6 py-4 flex justify-between items-center"
+      >
+        <!-- Logo dan Nama Sekolah -->
+        <a href="#" class="flex items-center gap-3">
+          <img
+            src="https://placehold.co/48x48/0284c7/FFFFFF?text=P"
+            alt="Logo SMKS Patriot 2 Bekasi"
+            class="w-10 h-10 rounded-full"
+          />
+          <span class="text-xl font-bold text-gray-900 hidden sm:block"
+            >SMKS Patriot 2</span
+          >
+        </a>
+
+        <!-- Menu Desktop -->
+        <div class="hidden md:flex items-center space-x-8">
+          <a
+            href="#beranda"
+            class="text-gray-600 hover:text-blue-600 font-semibold"
+            >Beranda</a
+          >
+          <a
+            href="#profil"
+            class="text-gray-600 hover:text-blue-600 font-semibold"
+            >Profil</a
+          >
+          <a
+            href="#jurusan"
+            class="text-gray-600 hover:text-blue-600 font-semibold"
+            >Jurusan</a
+          >
+          <a
+            href="#berita"
+            class="text-gray-600 hover:text-blue-600 font-semibold"
+            >Berita</a
+          >
+          <a
+            href="#kontak"
+            class="bg-blue-600 text-white px-5 py-2 rounded-full hover:bg-blue-700 transition-colors duration-300 font-bold"
+            >Kontak</a
+          >
+        </div>
+
+        <!-- Tombol Menu Mobile -->
+        <div class="md:hidden">
+          <button
+            id="mobile-menu-button"
+            class="text-gray-700 focus:outline-none"
+          >
+            <svg
+              class="w-7 h-7"
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke-width="1.5"
+              stroke="currentColor"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5"
+              />
+            </svg>
+          </button>
+        </div>
+      </nav>
+      <!-- Menu Mobile (Dropdown) -->
+      <div
+        id="mobile-menu"
+        class="hidden md:hidden bg-white border-t border-gray-200"
+      >
+        <a
+          href="#beranda"
+          class="block py-3 px-6 text-gray-600 hover:bg-gray-50 font-semibold"
+          >Beranda</a
+        >
+        <a
+          href="#profil"
+          class="block py-3 px-6 text-gray-600 hover:bg-gray-50 font-semibold"
+          >Profil</a
+        >
+        <a
+          href="#jurusan"
+          class="block py-3 px-6 text-gray-600 hover:bg-gray-50 font-semibold"
+          >Jurusan</a
+        >
+        <a
+          href="#berita"
+          class="block py-3 px-6 text-gray-600 hover:bg-gray-50 font-semibold"
+          >Berita</a
+        >
+        <a
+          href="#kontak"
+          class="block py-3 px-6 text-blue-600 hover:bg-gray-50 font-bold"
+          >Kontak</a
+        >
+      </div>
+    </header>
+
+    <!-- Main Content -->
+    <main>
+      <!-- Hero Section -->
+      <section id="beranda" class="bg-white">
+        <div
+          class="container mx-auto px-6 py-20 md:py-32 flex flex-col md:flex-row items-center"
+        >
+          <div class="md:w-1/2 text-center md:text-left mb-10 md:mb-0 fade-in">
+            <h1
+              class="text-4xl md:text-6xl font-extrabold text-gray-900 leading-tight"
+            >
+              Membentuk Generasi
+              <span class="text-blue-600">Unggul & Kompeten</span>
+            </h1>
+            <p class="mt-6 text-lg text-gray-600 max-w-lg mx-auto md:mx-0">
+              SMKS Patriot 2 Bekasi berkomitmen untuk menyediakan pendidikan
+              berkualitas yang relevan dengan kebutuhan industri.
+            </p>
+            <div class="mt-8 flex justify-center md:justify-start gap-4">
+              <a
+                href="#jurusan"
+                class="bg-blue-600 text-white px-8 py-3 rounded-full font-bold text-lg hover:bg-blue-700 transition-transform duration-300 hover:scale-105"
+                >Lihat Jurusan</a
+              >
+              <a
+                href="#profil"
+                class="bg-gray-200 text-gray-800 px-8 py-3 rounded-full font-bold text-lg hover:bg-gray-300 transition-transform duration-300 hover:scale-105"
+                >Tentang Kami</a
+              >
+            </div>
+          </div>
+          <div
+            class="md:w-1/2 flex justify-center fade-in"
+            style="animation-delay: 0.2s"
+          >
+            <img
+              src="https://placehold.co/500x500/e0f2fe/0284c7?text=Ilustrasi+Siswa"
+              alt="Ilustrasi Siswa Berprestasi"
+              class="rounded-xl shadow-2xl w-full max-w-md"
+            />
+          </div>
+        </div>
+      </section>
+
+      <!-- Profil Singkat Section -->
+      <section id="profil" class="py-20">
+        <div class="container mx-auto px-6 text-center">
+          <h2 class="text-3xl font-bold mb-4 text-gray-900">
+            Selamat Datang di SMKS Patriot 2 Bekasi
+          </h2>
+          <p class="text-lg text-gray-600 max-w-3xl mx-auto">
+            Kami adalah lembaga pendidikan kejuruan yang berdedikasi untuk
+            mencetak lulusan yang siap kerja, berkarakter, dan mampu bersaing di
+            era global. Dengan kurikulum yang adaptif dan fasilitas yang
+            memadai, kami membimbing siswa untuk mencapai potensi terbaik
+            mereka.
+          </p>
+        </div>
+      </section>
+
+      <!-- Program Keahlian (Jurusan) Section -->
+      <section id="jurusan" class="bg-white py-20">
+        <div class="container mx-auto px-6">
+          <div class="text-center mb-12">
+            <h2 class="text-3xl md:text-4xl font-bold text-gray-900">
+              Program Keahlian
+            </h2>
+            <p class="mt-4 text-lg text-gray-600">
+              Temukan passion dan keahlianmu bersama kami.
+            </p>
+          </div>
+          <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+            <!-- Card Jurusan 1 -->
+            <div class="bg-gray-50 rounded-xl p-8 text-center card-hover">
+              <div
+                class="bg-blue-100 text-blue-600 w-20 h-20 rounded-full mx-auto flex items-center justify-center mb-6"
+              >
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  class="h-10 w-10"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                  stroke-width="2"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    d="M5 12h14M5 12a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v4a2 2 0 01-2 2M5 12a2 2 0 00-2 2v4a2 2 0 002 2h14a2 2 0 002-2v-4a2 2 0 00-2-2m-2-4h.01M17 16h.01"
+                  />
+                </svg>
+              </div>
+              <h3 class="text-xl font-bold mb-2 text-gray-900">
+                Teknik Komputer & Jaringan
+              </h3>
+              <p class="text-gray-600">
+                Mempelajari perakitan, instalasi, dan administrasi jaringan
+                komputer.
+              </p>
+            </div>
+            <!-- Card Jurusan 2 -->
+            <div class="bg-gray-50 rounded-xl p-8 text-center card-hover">
+              <div
+                class="bg-blue-100 text-blue-600 w-20 h-20 rounded-full mx-auto flex items-center justify-center mb-6"
+              >
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  class="h-10 w-10"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                  stroke-width="2"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    d="M9 7h6m0 10v-3m-3 3h3m-3-10h.01M9 17h.01M15 17h.01M9 13h.01M15 13h.01M9 10h.01M15 10h.01M3 7v10a2 2 0 002 2h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2z"
+                  />
+                </svg>
+              </div>
+              <h3 class="text-xl font-bold mb-2 text-gray-900">
+                Akuntansi & Keuangan
+              </h3>
+              <p class="text-gray-600">
+                Menguasai siklus akuntansi, perpajakan, dan manajemen keuangan.
+              </p>
+            </div>
+            <!-- Card Jurusan 3 -->
+            <div class="bg-gray-50 rounded-xl p-8 text-center card-hover">
+              <div
+                class="bg-blue-100 text-blue-600 w-20 h-20 rounded-full mx-auto flex items-center justify-center mb-6"
+              >
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  class="h-10 w-10"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                  stroke-width="2"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"
+                  />
+                </svg>
+              </div>
+              <h3 class="text-xl font-bold mb-2 text-gray-900">
+                Manajemen Perkantoran
+              </h3>
+              <p class="text-gray-600">
+                Keahlian dalam administrasi, kearsipan, dan teknologi
+                perkantoran modern.
+              </p>
+            </div>
+            <!-- Card Jurusan 4 -->
+            <div class="bg-gray-50 rounded-xl p-8 text-center card-hover">
+              <div
+                class="bg-blue-100 text-blue-600 w-20 h-20 rounded-full mx-auto flex items-center justify-center mb-6"
+              >
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  class="h-10 w-10"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                  stroke-width="2"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z"
+                  />
+                </svg>
+              </div>
+              <h3 class="text-xl font-bold mb-2 text-gray-900">
+                Bisnis & Pemasaran
+              </h3>
+              <p class="text-gray-600">
+                Strategi pemasaran digital, manajemen ritel, dan kewirausahaan.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Berita Terbaru Section -->
+      <section id="berita" class="py-20">
+        <div class="container mx-auto px-6">
+          <div class="text-center mb-12">
+            <h2 class="text-3xl md:text-4xl font-bold text-gray-900">
+              Berita & Kegiatan
+            </h2>
+            <p class="mt-4 text-lg text-gray-600">
+              Ikuti perkembangan dan prestasi terbaru dari sekolah kami.
+            </p>
+          </div>
+          <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            <!-- Card Berita 1 -->
+            <div
+              class="bg-white rounded-xl overflow-hidden shadow-lg card-hover"
+            >
+              <img
+                src="https://placehold.co/600x400/e0f2fe/333?text=Kegiatan+Sekolah"
+                alt="Gambar Berita 1"
+                class="w-full h-56 object-cover"
+              />
+              <div class="p-6">
+                <p class="text-sm text-gray-500 mb-2">28 Juli 2025</p>
+                <h3 class="text-xl font-bold mb-3 text-gray-900">
+                  Siswa SMKS Patriot 2 Raih Juara 1 Lomba Kompetensi Siswa
+                  Tingkat Kota
+                </h3>
+                <a
+                  href="#"
+                  class="font-semibold text-blue-600 hover:text-blue-800"
+                  >Baca Selengkapnya &rarr;</a
+                >
+              </div>
+            </div>
+            <!-- Card Berita 2 -->
+            <div
+              class="bg-white rounded-xl overflow-hidden shadow-lg card-hover"
+            >
+              <img
+                src="https://placehold.co/600x400/dbeafe/333?text=Workshop+Guru"
+                alt="Gambar Berita 2"
+                class="w-full h-56 object-cover"
+              />
+              <div class="p-6">
+                <p class="text-sm text-gray-500 mb-2">15 Juli 2025</p>
+                <h3 class="text-xl font-bold mb-3 text-gray-900">
+                  Workshop Peningkatan Kompetensi Guru di Era Digital 4.0
+                </h3>
+                <a
+                  href="#"
+                  class="font-semibold text-blue-600 hover:text-blue-800"
+                  >Baca Selengkapnya &rarr;</a
+                >
+              </div>
+            </div>
+            <!-- Card Berita 3 -->
+            <div
+              class="bg-white rounded-xl overflow-hidden shadow-lg card-hover"
+            >
+              <img
+                src="https://placehold.co/600x400/bfdbfe/333?text=Kunjungan+Industri"
+                alt="Gambar Berita 3"
+                class="w-full h-56 object-cover"
+              />
+              <div class="p-6">
+                <p class="text-sm text-gray-500 mb-2">05 Juli 2025</p>
+                <h3 class="text-xl font-bold mb-3 text-gray-900">
+                  Kunjungan Industri Jurusan TKJ ke Perusahaan Teknologi
+                  Terkemuka
+                </h3>
+                <a
+                  href="#"
+                  class="font-semibold text-blue-600 hover:text-blue-800"
+                  >Baca Selengkapnya &rarr;</a
+                >
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <!-- Footer -->
+    <footer id="kontak" class="bg-gray-800 text-white">
+      <div class="container mx-auto px-6 py-12">
+        <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+          <!-- Tentang Sekolah -->
+          <div class="md:col-span-2">
+            <h4 class="text-xl font-bold mb-4">SMKS Patriot 2 Bekasi</h4>
+            <p class="text-gray-400">
+              Jl. Patriot No. 2, Jakasampurna, Kec. Bekasi Barat, Kota Bekasi,
+              Jawa Barat 17145.
+            </p>
+          </div>
+          <!-- Navigasi Cepat -->
+          <div>
+            <h4 class="text-xl font-bold mb-4">Tautan</h4>
+            <ul>
+              <li class="mb-2">
+                <a href="#profil" class="text-gray-400 hover:text-white"
+                  >Profil Sekolah</a
+                >
+              </li>
+              <li class="mb-2">
+                <a href="#jurusan" class="text-gray-400 hover:text-white"
+                  >Program Keahlian</a
+                >
+              </li>
+              <li class="mb-2">
+                <a href="#berita" class="text-gray-400 hover:text-white"
+                  >Berita</a
+                >
+              </li>
+            </ul>
+          </div>
+          <!-- Kontak & Sosial Media -->
+          <div>
+            <h4 class="text-xl font-bold mb-4">Hubungi Kami</h4>
+            <p class="text-gray-400 mb-2">Email: info@smkspatriot2.sch.id</p>
+            <p class="text-gray-400 mb-4">Telp: (021) 123-4567</p>
+            <div class="flex space-x-4">
+              <a href="#" class="text-gray-400 hover:text-white"
+                ><svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
+                  <path
+                    d="M22.46,6C21.69,6.35 20.86,6.58 20,6.69C20.88,6.16 21.56,5.32 21.88,4.31C21.05,4.81 20.13,5.16 19.16,5.36C18.37,4.5 17.26,4 16,4C13.65,4 11.73,5.92 11.73,8.29C11.73,8.63 11.77,8.96 11.84,9.27C8.28,9.09 5.11,7.38 3,4.79C2.63,5.42 2.42,6.16 2.42,6.94C2.42,8.43 3.17,9.75 4.33,10.5C3.62,10.5 2.96,10.3 2.38,10C2.38,10 2.38,10 2.38,10.03C2.38,12.11 3.86,13.85 5.82,14.24C5.46,14.34 5.08,14.39 4.69,14.39C4.42,14.39 4.15,14.36 3.89,14.31C4.43,16 6,17.26 7.89,17.29C6.43,18.45 4.58,19.13 2.56,19.13C2.22,19.13 1.88,19.11 1.54,19.07C3.44,20.29 5.7,21 8.12,21C16,21 20.33,14.46 20.33,8.79C20.33,8.6 20.33,8.42 20.32,8.23C21.16,7.63 21.88,6.87 22.46,6Z"
+                  ></path></svg
+              ></a>
+              <a href="#" class="text-gray-400 hover:text-white"
+                ><svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
+                  <path
+                    d="M12,2.04C6.5,2.04 2,6.54 2,12.04C2,17.54 6.5,22.04 12,22.04C17.5,22.04 22,17.54 22,12.04C22,6.54 17.5,2.04 12,2.04M12,20.04C7.58,20.04 4,16.46 4,12.04C4,7.62 7.58,4.04 12,4.04C16.42,4.04 20,7.62 20,12.04C20,16.46 16.42,20.04 12,20.04M16.5,8.24C16.5,7.54 15.96,7 15.25,7H8.75C8.04,7 7.5,7.54 7.5,8.24V15.84C7.5,16.54 8.04,17.1 8.75,17.1H15.25C15.96,17.1 16.5,16.54 16.5,15.84V8.24M15,15.6H9V8.7H15V15.6Z"
+                  ></path></svg
+              ></a>
+              <a href="#" class="text-gray-400 hover:text-white"
+                ><svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
+                  <path
+                    d="M17,2V2H17V6H21V10H17V14H21V18H17V22H13V18H9V14H13V10H9V6H13V2H17M15,4H11V8H7V12H11V16H15V12H19V8H15V4Z"
+                  ></path></svg
+              ></a>
+            </div>
+          </div>
+        </div>
+        <div
+          class="mt-10 border-t border-gray-700 pt-6 text-center text-gray-500"
+        >
+          <p>
+            &copy; <span id="year"></span> SMKS Patriot 2 Bekasi. All rights
+            reserved.
+          </p>
+        </div>
+      </div>
+    </footer>
+
+    <script>
+      // JavaScript untuk fungsionalitas menu mobile
+      const mobileMenuButton = document.getElementById("mobile-menu-button");
+      const mobileMenu = document.getElementById("mobile-menu");
+
+      mobileMenuButton.addEventListener("click", () => {
+        mobileMenu.classList.toggle("hidden");
+      });
+
+      // Menutup menu mobile saat link di-klik
+      const mobileMenuLinks = mobileMenu.querySelectorAll("a");
+      mobileMenuLinks.forEach((link) => {
+        link.addEventListener("click", () => {
+          mobileMenu.classList.add("hidden");
+        });
+      });
+
+      // Set tahun di footer secara dinamis
+      document.getElementById("year").textContent = new Date().getFullYear();
+    </script>
+  </body>
+</html>
