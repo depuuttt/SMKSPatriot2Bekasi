@@ -295,71 +295,12 @@
               Ikuti perkembangan dan prestasi terbaru dari sekolah kami.
             </p>
           </div>
-          <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            <!-- Card Berita 1 -->
-            <div
-              class="bg-white rounded-xl overflow-hidden shadow-lg card-hover"
-            >
-              <img
-                src="https://placehold.co/600x400/e0f2fe/333?text=Kegiatan+Sekolah"
-                alt="Gambar Berita 1"
-                class="w-full h-56 object-cover"
-              />
-              <div class="p-6">
-                <p class="text-sm text-gray-500 mb-2">29 Juli 2025</p>
-                <h3 class="text-xl font-bold mb-3 text-gray-900">
-                  Siswa SMKS Patriot 2 Raih Juara 1 Lomba Kompetensi Siswa
-                  Tingkat Kota
-                </h3>
-                <a
-                  href="#"
-                  class="font-semibold text-blue-600 hover:text-blue-800"
-                  >Baca Selengkapnya &rarr;</a
-                >
-              </div>
-            </div>
-            <!-- Card Berita 2 -->
-            <div
-              class="bg-white rounded-xl overflow-hidden shadow-lg card-hover"
-            >
-              <img
-                src="https://placehold.co/600x400/dbeafe/333?text=Workshop+Guru"
-                alt="Gambar Berita 2"
-                class="w-full h-56 object-cover"
-              />
-              <div class="p-6">
-                <p class="text-sm text-gray-500 mb-2">15 Juli 2025</p>
-                <h3 class="text-xl font-bold mb-3 text-gray-900">
-                  Workshop Peningkatan Kompetensi Guru di Era Digital 4.0
-                </h3>
-                <a
-                  href="#"
-                  class="font-semibold text-blue-600 hover:text-blue-800"
-                  >Baca Selengkapnya &rarr;</a
-                >
-              </div>
-            </div>
-            <!-- Card Berita 3 -->
-            <div
-              class="bg-white rounded-xl overflow-hidden shadow-lg card-hover"
-            >
-              <img
-                src="https://placehold.co/600x400/bfdbfe/333?text=Kunjungan+Industri"
-                alt="Gambar Berita 3"
-                class="w-full h-56 object-cover"
-              />
-              <div class="p-6">
-                <p class="text-sm text-gray-500 mb-2">05 Juli 2025</p>
-                <h3 class="text-xl font-bold mb-3 text-gray-900">
-                  Kunjungan Industri Jurusan Pemasaran ke Perusahaan Terkemuka
-                </h3>
-                <a
-                  href="#"
-                  class="font-semibold text-blue-600 hover:text-blue-800"
-                  >Baca Selengkapnya &rarr;</a
-                >
-              </div>
-            </div>
+          <!-- Kontainer untuk kartu berita dinamis -->
+          <div
+            id="berita-container"
+            class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
+          >
+            <!-- Kartu berita akan dimuat di sini oleh JavaScript -->
           </div>
         </div>
       </section>
@@ -439,24 +380,77 @@
     </footer>
 
     <script>
-      // JavaScript untuk fungsionalitas menu mobile
-      const mobileMenuButton = document.getElementById("mobile-menu-button");
-      const mobileMenu = document.getElementById("mobile-menu");
+      // Menunggu hingga seluruh konten halaman dimuat
+      document.addEventListener("DOMContentLoaded", (event) => {
+        // --- Fungsionalitas Menu Mobile ---
+        const mobileMenuButton = document.getElementById("mobile-menu-button");
+        const mobileMenu = document.getElementById("mobile-menu");
 
-      mobileMenuButton.addEventListener("click", () => {
-        mobileMenu.classList.toggle("hidden");
-      });
-
-      // Menutup menu mobile saat link di-klik
-      const mobileMenuLinks = mobileMenu.querySelectorAll("a");
-      mobileMenuLinks.forEach((link) => {
-        link.addEventListener("click", () => {
-          mobileMenu.classList.add("hidden");
+        mobileMenuButton.addEventListener("click", () => {
+          mobileMenu.classList.toggle("hidden");
         });
-      });
 
-      // Set tahun di footer secara dinamis
-      document.getElementById("year").textContent = new Date().getFullYear();
+        // Menutup menu mobile saat link di-klik
+        const mobileMenuLinks = mobileMenu.querySelectorAll("a");
+        mobileMenuLinks.forEach((link) => {
+          link.addEventListener("click", () => {
+            mobileMenu.classList.add("hidden");
+          });
+        });
+
+        // --- Data Dinamis untuk Berita & Kegiatan ---
+        // Anda bisa mengubah data di bawah ini untuk memperbarui konten berita
+        const beritaData = [
+          {
+            gambarUrl:
+              "https://placehold.co/600x400/e0f2fe/333?text=Kegiatan+Sekolah",
+            tanggal: "29 Juli 2025",
+            judul:
+              "Siswa SMKS Patriot 2 Raih Juara 1 Lomba Kompetensi Siswa Tingkat Kota",
+            tautan: "#",
+          },
+          {
+            gambarUrl:
+              "https://placehold.co/600x400/dbeafe/333?text=Workshop+Guru",
+            tanggal: "15 Juli 2025",
+            judul: "Workshop Peningkatan Kompetensi Guru di Era Digital 4.0",
+            tautan: "#",
+          },
+          {
+            gambarUrl:
+              "https://placehold.co/600x400/bfdbfe/333?text=Kunjungan+Industri",
+            tanggal: "05 Juli 2025",
+            judul:
+              "Kunjungan Industri Jurusan Pemasaran ke Perusahaan Terkemuka",
+            tautan: "#",
+          },
+        ];
+
+        // --- Fungsi untuk Merender Kartu Berita ---
+        const beritaContainer = document.getElementById("berita-container");
+
+        // Kosongkan kontainer sebelum mengisi
+        beritaContainer.innerHTML = "";
+
+        // Loop melalui data dan buat HTML untuk setiap kartu
+        beritaData.forEach((berita) => {
+          const cardHTML = `
+            <div class="bg-white rounded-xl overflow-hidden shadow-lg card-hover">
+              <img src="${berita.gambarUrl}" alt="Gambar untuk ${berita.judul}" class="w-full h-56 object-cover">
+              <div class="p-6">
+                <p class="text-sm text-gray-500 mb-2">${berita.tanggal}</p>
+                <h3 class="text-xl font-bold mb-3 text-gray-900">${berita.judul}</h3>
+                <a href="${berita.tautan}" class="font-semibold text-blue-600 hover:text-blue-800">Baca Selengkapnya &rarr;</a>
+              </div>
+            </div>
+          `;
+          // Tambahkan HTML kartu ke dalam kontainer
+          beritaContainer.innerHTML += cardHTML;
+        });
+
+        // --- Set tahun di footer secara dinamis ---
+        document.getElementById("year").textContent = new Date().getFullYear();
+      });
     </script>
   </body>
 </html>
