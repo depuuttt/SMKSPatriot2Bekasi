@@ -1,0 +1,891 @@
+<!DOCTYPE html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Kartu Login ANBK 2025</title>
+
+    <!-- Favicon SVG: Dibuat dengan kode agar tidak ada dependensi eksternal -->
+    <link
+      rel="icon"
+      href="assets/img/logo.png"
+    />
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Google Fonts: Nunito -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200..1000;1,200..1000&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- Custom Styles -->
+    <style>
+      body {
+        font-family: "Nunito", sans-serif;
+      }
+      /* Custom scrollbar for better aesthetics */
+      ::-webkit-scrollbar {
+        width: 8px;
+      }
+      ::-webkit-scrollbar-track {
+        background: #f1f1f1;
+      }
+      ::-webkit-scrollbar-thumb {
+        background: #888;
+        border-radius: 10px;
+      }
+      ::-webkit-scrollbar-thumb:hover {
+        background: #555;
+      }
+      /* Style for the toast message */
+      #toast {
+        visibility: hidden;
+        min-width: 250px;
+        background-color: #333;
+        color: #fff;
+        text-align: center;
+        border-radius: 8px;
+        padding: 16px;
+        position: fixed;
+        z-index: 100;
+        left: 50%;
+        transform: translateX(-50%);
+        bottom: 30px;
+        opacity: 0;
+        transition: visibility 0s, opacity 0.5s linear;
+      }
+      #toast.show {
+        visibility: visible;
+        opacity: 1;
+      }
+    </style>
+  </head>
+  <body class="bg-gray-100 text-gray-800">
+    <div class="container mx-auto p-4 md:p-8">
+      <!-- Header with Logo -->
+      <header
+        class="flex flex-col md:flex-row items-center justify-center mb-8"
+      >
+        <!-- Logo .png: Ukuran diatur oleh class Tailwind, bukan dari gambar asli -->
+        <img
+          src="assets/img/logo.png"
+          alt="Logo Sekolah"
+          class="w-16 h-16 md:w-20 md:h-20 object-contain mb-4 md:mb-0 md:mr-6"
+          onerror="this.onerror=null;this.src='https://placehold.co/80x80/cccccc/FFFFFF?text=Logo';"
+        />
+        <div class="text-center md:text-left">
+          <h1 class="text-3xl md:text-4xl font-extrabold text-gray-900">
+            Kartu Login Gladi Bersih ANBK 2025
+          </h1>
+          <p class="text-gray-600 mt-2">SMKS Patriot 2 Bekasi</p>
+        </div>
+      </header>
+
+      <!-- Controls: Search and Filter -->
+      <div class="bg-white p-4 rounded-xl shadow-md mb-8 sticky top-4 z-50">
+        <div class="flex flex-col md:flex-row gap-4 md:items-center">
+          <!-- Search Input -->
+          <div class="relative flex-grow">
+            <input
+              type="text"
+              id="searchInput"
+              placeholder="Cari Nama atau NISN..."
+              class="w-full pl-10 pr-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+            />
+            <svg
+              class="w-5 h-5 text-gray-400 absolute top-1/2 left-3 transform -translate-y-1/2"
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke-width="1.5"
+              stroke="currentColor"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607z"
+              />
+            </svg>
+          </div>
+
+          <!-- Filter Controls Container -->
+          <div class="relative flex-shrink-0">
+            <!-- Mobile Toggle Button -->
+            <button
+              id="filterToggleButton"
+              class="md:hidden w-full flex items-center justify-center gap-2 p-2 border rounded-lg text-gray-700 font-semibold"
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                class="h-5 w-5"
+                viewBox="0 0 20 20"
+                fill="currentColor"
+              >
+                <path
+                  fill-rule="evenodd"
+                  d="M3 3a1 1 0 011-1h12a1 1 0 011 1v3a1 1 0 01-.293.707L13 10.414V15a1 1 0 01-.293.707l-2 2A1 1 0 019 17v-6.586L4.293 6.707A1 1 0 014 6V3z"
+                  clip-rule="evenodd"
+                />
+              </svg>
+              <span>Filter Sesi</span>
+            </button>
+
+            <!-- Filter Panel -->
+            <div
+              id="filterPanel"
+              class="absolute top-full mt-2 w-full rounded-lg bg-white p-4 shadow-lg flex flex-col items-stretch gap-2 z-20 hidden md:relative md:top-auto md:mt-0 md:w-auto md:rounded-none md:bg-transparent md:p-0 md:shadow-none md:flex md:flex-row md:items-center md:gap-2"
+            >
+              <button
+                class="filter-btn bg-blue-500 text-white px-4 py-2 rounded-lg font-semibold shadow md:shadow-sm"
+                data-sesi="semua"
+              >
+                Semua
+              </button>
+              <button
+                class="filter-btn bg-gray-200 text-gray-700 px-4 py-2 rounded-lg font-semibold"
+                data-sesi="1"
+              >
+                Sesi 1
+              </button>
+              <button
+                class="filter-btn bg-gray-200 text-gray-700 px-4 py-2 rounded-lg font-semibold"
+                data-sesi="2"
+              >
+                Sesi 2
+              </button>
+              <button
+                class="filter-btn bg-gray-200 text-gray-700 px-4 py-2 rounded-lg font-semibold"
+                data-sesi="3"
+              >
+                Sesi 3
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Student Cards Container -->
+      <main
+        id="cardsContainer"
+        class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"
+      >
+        <!-- Kartu Peserta akan dimuat di sini oleh JavaScript -->
+      </main>
+
+      <!-- Not Found Message -->
+      <div id="notFound" class="text-center py-16 hidden">
+        <h2 class="text-2xl font-bold text-gray-500">
+          Peserta Tidak Ditemukan
+        </h2>
+        <p class="text-gray-400">
+          Coba kata kunci lain atau periksa kembali filter sesi Anda.
+        </p>
+      </div>
+    </div>
+
+    <!-- Toast Notification -->
+    <div id="toast">Teks berhasil disalin!</div>
+
+    <script>
+      // Data Peserta ANBK 2025
+      const studentData = [
+        // Sesi 1
+        {
+          nama: "FADIA AZZAHRA",
+          nisn: "0099135649",
+          ttl: "BEKASI, 31 Januari 2009",
+          username: "K0203011500018",
+          password: "774622*",
+          idProktor: "K02030115-AY5K/Lab 1",
+          gelombang: "Gelombang 1",
+          sesi: 1,
+          waktuSesi: "07.30-09.40",
+        },
+        {
+          nama: "PUSPITA WAHYUNINGSIH",
+          nisn: "0098860168",
+          ttl: "BEKASI, 25 Januari 2009",
+          username: "K0203011500027",
+          password: "176964*",
+          idProktor: "K02030115-AY5K/Lab 1",
+          gelombang: "Gelombang 1",
+          sesi: 1,
+          waktuSesi: "07.30-09.40",
+        },
+        {
+          nama: "JASMINE FLANELLA ADITYA PUTRIE",
+          nisn: "0095997178",
+          ttl: "BEKASI, 08 Februari 2009",
+          username: "K0203011500036",
+          password: "733784*",
+          idProktor: "K02030115-AY5K/Lab 1",
+          gelombang: "Gelombang 1",
+          sesi: 1,
+          waktuSesi: "07.30-09.40",
+        },
+        {
+          nama: "Syarifah Syahara",
+          nisn: "0091120522",
+          ttl: "Bekasi, 10 Mei 2009",
+          username: "K0203011500045",
+          password: "796291*",
+          idProktor: "K02030115-AY5K/Lab 1",
+          gelombang: "Gelombang 1",
+          sesi: 1,
+          waktuSesi: "07.30-09.40",
+        },
+        {
+          nama: "LUTFIAH KHAIRUNNISA",
+          nisn: "0086101238",
+          ttl: "BEKASI, 20 Agustus 2008",
+          username: "K0203011500054",
+          password: "305233*",
+          idProktor: "K02030115-AY5K/Lab 1",
+          gelombang: "Gelombang 1",
+          sesi: 1,
+          waktuSesi: "07.30-09.40",
+        },
+        {
+          nama: "ANISAH REVIANI",
+          nisn: "0091933905",
+          ttl: "BEKASI, 22 Juni 2009",
+          username: "K0203011500063",
+          password: "347198*",
+          idProktor: "K02030115-AY5K/Lab 1",
+          gelombang: "Gelombang 1",
+          sesi: 1,
+          waktuSesi: "07.30-09.40",
+        },
+        {
+          nama: "KEISHA KIRANA",
+          nisn: "0089914215",
+          ttl: "JAKARTA, 05 November 2008",
+          username: "K0203011500072",
+          password: "313065*",
+          idProktor: "K02030115-AY5K/Lab 1",
+          gelombang: "Gelombang 1",
+          sesi: 1,
+          waktuSesi: "07.30-09.40",
+        },
+        {
+          nama: "RIVI RANAYA ASARI",
+          nisn: "0098904793",
+          ttl: "BEKASI, 18 Juli 2009",
+          username: "K0203011500089",
+          password: "630871*",
+          idProktor: "K02030115-AY5K/Lab 1",
+          gelombang: "Gelombang 1",
+          sesi: 1,
+          waktuSesi: "07.30-09.40",
+        },
+        {
+          nama: "AULIA SHOFI LATHIFAH",
+          nisn: "0095416179",
+          ttl: "Bekasi, 17 Februari 2009",
+          username: "K0203011500098",
+          password: "611650*",
+          idProktor: "K02030115-AY5K/Lab 1",
+          gelombang: "Gelombang 1",
+          sesi: 1,
+          waktuSesi: "07.30-09.40",
+        },
+        {
+          nama: "MEI TIARA SYAH FITRI",
+          nisn: "0098793246",
+          ttl: "Bekasi, 22 Mei 2009",
+          username: "K0203011500107",
+          password: "463879*",
+          idProktor: "K02030115-AY5K/Lab 1",
+          gelombang: "Gelombang 1",
+          sesi: 1,
+          waktuSesi: "07.30-09.40",
+        },
+        {
+          nama: "SILMI LATHIFAH ZAHRA",
+          nisn: "0098292716",
+          ttl: "BEKASI, 05 Mei 2009",
+          username: "K0203011500116",
+          password: "878721*",
+          idProktor: "K02030115-AY5K/Lab 1",
+          gelombang: "Gelombang 1",
+          sesi: 1,
+          waktuSesi: "07.30-09.40",
+        },
+        {
+          nama: "ZAFIRA SYAHWA HAFIDZA",
+          nisn: "0073196392",
+          ttl: "Jakarta, 02 Oktober 2007",
+          username: "K0203011500125",
+          password: "253366*",
+          idProktor: "K02030115-AY5K/Lab 1",
+          gelombang: "Gelombang 1",
+          sesi: 1,
+          waktuSesi: "07.30-09.40",
+        },
+        {
+          nama: "BUNGA CAHAYA RAMADHAN",
+          nisn: "0083315116",
+          ttl: "SURABAYA, 05 September 2008",
+          username: "K0203011500134",
+          password: "411049*",
+          idProktor: "K02030115-AY5K/Lab 1",
+          gelombang: "Gelombang 1",
+          sesi: 1,
+          waktuSesi: "07.30-09.40",
+        },
+        {
+          nama: "DIANDRA ROSELINE",
+          nisn: "0093546379",
+          ttl: "BEKASI, 10 Agustus 2009",
+          username: "K0203011500143",
+          password: "473981*",
+          idProktor: "K02030115-AY5K/Lab 1",
+          gelombang: "Gelombang 1",
+          sesi: 1,
+          waktuSesi: "07.30-09.40",
+        },
+        {
+          nama: "JIHAN MAHESTY",
+          nisn: "0087420841",
+          ttl: "BEKASI, 30 Oktober 2008",
+          username: "K0203011500152",
+          password: "869343*",
+          idProktor: "K02030115-AY5K/Lab 1",
+          gelombang: "Gelombang 1",
+          sesi: 1,
+          waktuSesi: "07.30-09.40",
+        },
+        // Sesi 2
+        {
+          nama: "SOFIA",
+          nisn: "0097622656",
+          ttl: "Bekasi, 09 Mei 2009",
+          username: "K0203011500169",
+          password: "499304*",
+          idProktor: "K02030115-AY5K/Lab 1",
+          gelombang: "Gelombang 1",
+          sesi: 2,
+          waktuSesi: "10.40-12.50",
+        },
+        {
+          nama: "SASKIA AULIA DINA",
+          nisn: "0062219632",
+          ttl: "Bekasi, 27 Juni 2006",
+          username: "K0203011500178",
+          password: "958541*",
+          idProktor: "K02030115-AY5K/Lab 1",
+          gelombang: "Gelombang 1",
+          sesi: 2,
+          waktuSesi: "10.40-12.50",
+        },
+        {
+          nama: "NABILA AYUWANDITA",
+          nisn: "0083735028",
+          ttl: "Bekasi, 11 Desember 2008",
+          username: "K0203011500187",
+          password: "201584*",
+          idProktor: "K02030115-AY5K/Lab 1",
+          gelombang: "Gelombang 1",
+          sesi: 2,
+          waktuSesi: "10.40-12.50",
+        },
+        {
+          nama: "WULAN SETIYANI",
+          nisn: "0085697017",
+          ttl: "BEKASI, 28 Februari 2008",
+          username: "K0203011500196",
+          password: "320500*",
+          idProktor: "K02030115-AY5K/Lab 1",
+          gelombang: "Gelombang 1",
+          sesi: 2,
+          waktuSesi: "10.40-12.50",
+        },
+        {
+          nama: "MILANISTI KAYLA SABILA",
+          nisn: "0087678475",
+          ttl: "Bekasi, 30 Mei 2008",
+          username: "K0203011500205",
+          password: "351813*",
+          idProktor: "K02030115-AY5K/Lab 1",
+          gelombang: "Gelombang 1",
+          sesi: 2,
+          waktuSesi: "10.40-12.50",
+        },
+        {
+          nama: "MELISA",
+          nisn: "0095401190",
+          ttl: "BEKASI, 03 Mei 2009",
+          username: "K0203011500214",
+          password: "550730*",
+          idProktor: "K02030115-AY5K/Lab 1",
+          gelombang: "Gelombang 1",
+          sesi: 2,
+          waktuSesi: "10.40-12.50",
+        },
+        {
+          nama: "PUSPITA WIANTI",
+          nisn: "0083025101",
+          ttl: "BEKASI, 27 November 2008",
+          username: "K0203011500223",
+          password: "528293*",
+          idProktor: "K02030115-AY5K/Lab 1",
+          gelombang: "Gelombang 1",
+          sesi: 2,
+          waktuSesi: "10.40-12.50",
+        },
+        {
+          nama: "Vina Eva Liana",
+          nisn: "0081445540",
+          ttl: "Jakarta, 20 Desember 2008",
+          username: "K0203011500232",
+          password: "151849*",
+          idProktor: "K02030115-AY5K/Lab 1",
+          gelombang: "Gelombang 1",
+          sesi: 2,
+          waktuSesi: "10.40-12.50",
+        },
+        {
+          nama: "Resi Aniyah",
+          nisn: "0035096044",
+          ttl: "Bekasi, 03 Maret 2003",
+          username: "K0203011500249",
+          password: "500074*",
+          idProktor: "K02030115-AY5K/Lab 1",
+          gelombang: "Gelombang 1",
+          sesi: 2,
+          waktuSesi: "10.40-12.50",
+        },
+        {
+          nama: "ALYSSA PUTRI PERMANA",
+          nisn: "0082032940",
+          ttl: "BEKASI, 13 Januari 2008",
+          username: "K0203011500258",
+          password: "213803*",
+          idProktor: "K02030115-AY5K/Lab 1",
+          gelombang: "Gelombang 1",
+          sesi: 2,
+          waktuSesi: "10.40-12.50",
+        },
+        {
+          nama: "ERNISSA NURUL HIDAYAH",
+          nisn: "0099563660",
+          ttl: "Bekasi, 22 Maret 2009",
+          username: "K0203011500267",
+          password: "496956*",
+          idProktor: "K02030115-AY5K/Lab 1",
+          gelombang: "Gelombang 1",
+          sesi: 2,
+          waktuSesi: "10.40-12.50",
+        },
+        {
+          nama: "Nur Azizah",
+          nisn: "0065591939",
+          ttl: "Jakarta, 15 Oktober 2006",
+          username: "K0203011500276",
+          password: "541428*",
+          idProktor: "K02030115-AY5K/Lab 1",
+          gelombang: "Gelombang 1",
+          sesi: 2,
+          waktuSesi: "10.40-12.50",
+        },
+        {
+          nama: "NINDYA SYIFA AYUNDA",
+          nisn: "0096203113",
+          ttl: "BEKASI, 20 April 2009",
+          username: "K0203011500285",
+          password: "517645*",
+          idProktor: "K02030115-AY5K/Lab 1",
+          gelombang: "Gelombang 1",
+          sesi: 2,
+          waktuSesi: "10.40-12.50",
+        },
+        {
+          nama: "KANAYA CHESA PUTRI",
+          nisn: "0082250241",
+          ttl: "BEKASI, 18 Oktober 2008",
+          username: "K0203011500294",
+          password: "750386*",
+          idProktor: "K02030115-AY5K/Lab 1",
+          gelombang: "Gelombang 1",
+          sesi: 2,
+          waktuSesi: "10.40-12.50",
+        },
+        {
+          nama: "Savera Leo Fitri",
+          nisn: "0085639407",
+          ttl: "Bekasi, 23 Oktober 2008",
+          username: "K0203011500303",
+          password: "247088*",
+          idProktor: "K02030115-AY5K/Lab 1",
+          gelombang: "Gelombang 1",
+          sesi: 2,
+          waktuSesi: "10.40-12.50",
+        },
+        // Sesi 3
+        {
+          nama: "TASYA",
+          nisn: "0098064210",
+          ttl: "BEKASI, 21 Januari 2009",
+          username: "K0203011500312",
+          password: "670558*",
+          idProktor: "K02030115-AY5K/Lab 1",
+          gelombang: "Gelombang 1",
+          sesi: 3,
+          waktuSesi: "14.20-16.30",
+        },
+        {
+          nama: "SALWA ASSYIFA",
+          nisn: "0083887133",
+          ttl: "BEKASI, 22 September 2008",
+          username: "K0203011500329",
+          password: "588913*",
+          idProktor: "K02030115-AY5K/Lab 1",
+          gelombang: "Gelombang 1",
+          sesi: 3,
+          waktuSesi: "14.20-16.30",
+        },
+        {
+          nama: "ZAELILA MEICHASYANAH",
+          nisn: "0088652124",
+          ttl: "Bekasi, 17 Mei 2008",
+          username: "K0203011500338",
+          password: "586597*",
+          idProktor: "K02030115-AY5K/Lab 1",
+          gelombang: "Gelombang 1",
+          sesi: 3,
+          waktuSesi: "14.20-16.30",
+        },
+        {
+          nama: "Sesa Mayyori",
+          nisn: "0087375144",
+          ttl: "Bekasi, 14 Mei 2008",
+          username: "K0203011500347",
+          password: "227139*",
+          idProktor: "K02030115-AY5K/Lab 1",
+          gelombang: "Gelombang 1",
+          sesi: 3,
+          waktuSesi: "14.20-16.30",
+        },
+        {
+          nama: "NAFISAH ALIYYAH SUCI",
+          nisn: "0085000357",
+          ttl: "BEKASI, 04 Desember 2008",
+          username: "K0203011500356",
+          password: "716596*",
+          idProktor: "K02030115-AY5K/Lab 1",
+          gelombang: "Gelombang 1",
+          sesi: 3,
+          waktuSesi: "14.20-16.30",
+        },
+        {
+          nama: "Michelle Dini Stevani Imanuel",
+          nisn: "0083927383",
+          ttl: "Jakarta, 19 Januari 2008",
+          username: "K0203011500365",
+          password: "329002*",
+          idProktor: "K02030115-AY5K/Lab 1",
+          gelombang: "Gelombang 1",
+          sesi: 3,
+          waktuSesi: "14.20-16.30",
+        },
+        {
+          nama: "BUNGA RAHMA LESTARI",
+          nisn: "0087840093",
+          ttl: "Jl. Pemuda gg asslam, 07 Desember 2008",
+          username: "K0203011500374",
+          password: "482876*",
+          idProktor: "K02030115-AY5K/Lab 1",
+          gelombang: "Gelombang 1",
+          sesi: 3,
+          waktuSesi: "14.20-16.30",
+        },
+        {
+          nama: "Dianah Safitri",
+          nisn: "0058799290",
+          ttl: "Brebes, 29 April 2005",
+          username: "K0203011500383",
+          password: "449472*",
+          idProktor: "K02030115-AY5K/Lab 1",
+          gelombang: "Gelombang 1",
+          sesi: 3,
+          waktuSesi: "14.20-16.30",
+        },
+        {
+          nama: "INTAN NURAENI",
+          nisn: "0091936509",
+          ttl: "Subang, 06 Maret 2009",
+          username: "K0203011500392",
+          password: "640249*",
+          idProktor: "K02030115-AY5K/Lab 1",
+          gelombang: "Gelombang 1",
+          sesi: 3,
+          waktuSesi: "14.20-16.30",
+        },
+        {
+          nama: "NAURA AULIA PUTRI",
+          nisn: "0086454779",
+          ttl: "BEKASI, 14 Desember 2008",
+          username: "K0203011500409",
+          password: "561389*",
+          idProktor: "K02030115-AY5K/Lab 1",
+          gelombang: "Gelombang 1",
+          sesi: 3,
+          waktuSesi: "14.20-16.30",
+        },
+        {
+          nama: "AN'NISA ISNA RIZA",
+          nisn: "0093867637",
+          ttl: "BEKASI, 29 Juni 2009",
+          username: "K0203011500418",
+          password: "863252*",
+          idProktor: "K02030115-AY5K/Lab 1",
+          gelombang: "Gelombang 1",
+          sesi: 3,
+          waktuSesi: "14.20-16.30",
+        },
+        {
+          nama: "BERTHA HANARIA OSSETRIX",
+          nisn: "0092852381",
+          ttl: "JAKARTA, 07 April 2009",
+          username: "K0203011500427",
+          password: "617724*",
+          idProktor: "K02030115-AY5K/Lab 1",
+          gelombang: "Gelombang 1",
+          sesi: 3,
+          waktuSesi: "14.20-16.30",
+        },
+        {
+          nama: "Saskia Isnaini",
+          nisn: "0059600735",
+          ttl: "Bekasi, 12 Desember 2005",
+          username: "K0203011500436",
+          password: "119633*",
+          idProktor: "K02030115-AY5K/Lab 1",
+          gelombang: "Gelombang 1",
+          sesi: 3,
+          waktuSesi: "14.20-16.30",
+        },
+        {
+          nama: "Reva Larasati",
+          nisn: "0089549870",
+          ttl: "Bekasi, 03 Februari 2008",
+          username: "K0203011500445",
+          password: "611186*",
+          idProktor: "K02030115-AY5K/Lab 1",
+          gelombang: "Gelombang 1",
+          sesi: 3,
+          waktuSesi: "14.20-16.30",
+        },
+        {
+          nama: "JIHAN JULIYANTI",
+          nisn: "0077550302",
+          ttl: "Bekasi, 27 Juli 2007",
+          username: "K0203011500454",
+          password: "150751*",
+          idProktor: "K02030115-AY5K/Lab 1",
+          gelombang: "Gelombang 1",
+          sesi: 3,
+          waktuSesi: "14.20-16.30",
+        },
+      ];
+
+      const cardsContainer = document.getElementById("cardsContainer");
+      const searchInput = document.getElementById("searchInput");
+      const filterPanel = document.getElementById("filterPanel");
+      const filterToggleButton = document.getElementById("filterToggleButton");
+      const filterBtns = document.querySelectorAll(".filter-btn");
+      const notFoundMessage = document.getElementById("notFound");
+      const toast = document.getElementById("toast");
+
+      let activeFilter = "semua";
+
+      /**
+       * Function to copy text to clipboard and show a toast notification.
+       * @param {string} text - The text to be copied.
+       */
+      function copyToClipboard(text) {
+        const textarea = document.createElement("textarea");
+        textarea.value = text;
+        document.body.appendChild(textarea);
+        textarea.select();
+        try {
+          document.execCommand("copy");
+          showToast();
+        } catch (err) {
+          console.error("Gagal menyalin teks: ", err);
+        }
+        document.body.removeChild(textarea);
+      }
+
+      /**
+       * Function to show the toast notification.
+       */
+      function showToast() {
+        toast.className = "show";
+        setTimeout(function () {
+          toast.className = toast.className.replace("show", "");
+        }, 3000);
+      }
+
+      /**
+       * Renders the student cards based on the provided data array.
+       * @param {Array} students - The array of student objects to render.
+       */
+      const renderCards = (students) => {
+        cardsContainer.innerHTML = "";
+        if (students.length === 0) {
+          notFoundMessage.classList.remove("hidden");
+        } else {
+          notFoundMessage.classList.add("hidden");
+        }
+
+        students.forEach((student) => {
+          const card = document.createElement("div");
+          card.className =
+            "bg-white rounded-xl shadow-lg overflow-hidden transform hover:scale-105 transition-transform duration-300";
+          card.innerHTML = `
+                    <div class="p-6">
+                        <div class="flex justify-between items-start">
+                            <div>
+                                <h2 class="text-xl font-bold text-gray-900">${student.nama}</h2>
+                                <p class="text-sm text-gray-500">NISN: ${student.nisn}</p>
+                            </div>
+                            <div class="bg-blue-100 text-blue-800 text-sm font-semibold px-3 py-1 rounded-full">
+                                Sesi ${student.sesi}
+                            </div>
+                        </div>
+                        
+                        <div class="mt-4 space-y-2 text-sm">
+                            <p><strong class="font-semibold text-gray-600 w-28 inline-block">Tpt/Tgl Lahir</strong>: ${student.ttl}</p>
+                            <p><strong class="font-semibold text-gray-600 w-28 inline-block">ID Proktor</strong>: ${student.idProktor}</p>
+                            <p><strong class="font-semibold text-gray-600 w-28 inline-block">Gelombang</strong>: ${student.gelombang}</p>
+                        </div>
+
+                        <div class="mt-4 pt-4 border-t border-gray-200 space-y-2">
+                            <div class="flex items-center justify-between">
+                                <span class="font-semibold text-gray-600">Username</span>
+                                <div class="flex items-center gap-2">
+                                    <span class="text-gray-800 font-mono">${student.username}</span>
+                                    <button onclick="copyToClipboard('${student.username}')" class="text-gray-400 hover:text-blue-500" title="Salin Username">
+                                        <svg class="w-5 h-5" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M15.75 17.25v3.375c0 .621-.504 1.125-1.125 1.125h-9.75a1.125 1.125 0 01-1.125-1.125V7.875c0-.621.504-1.125 1.125-1.125H6.75a9.06 9.06 0 011.5.124m7.5 10.376h3.375c.621 0 1.125-.504 1.125-1.125V11.25c0-4.46-3.243-8.161-7.5-8.876a9.06 9.06 0 00-1.5-.124H9.375c-.621 0-1.125.504-1.125 1.125v3.5m7.5 10.375H9.375a1.125 1.125 0 01-1.125-1.125v-9.25m12 6.625v-1.875a3.375 3.375 0 00-3.375-3.375h-1.5a1.125 1.125 0 01-1.125-1.125v-1.5a3.375 3.375 0 00-3.375-3.375H9.75" /></svg>
+                                    </button>
+                                </div>
+                            </div>
+                            <div class="flex items-center justify-between">
+                                <span class="font-semibold text-gray-600">Password</span>
+                                <div class="flex items-center gap-2">
+                                    <span class="text-gray-800 font-mono password-field" data-password="${student.password}">••••••</span>
+                                    <button class="text-gray-400 hover:text-blue-500 toggle-password" title="Tampilkan/Sembunyikan Password">
+                                        <svg class="w-5 h-5 eye-open" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M2.036 12.322a1.012 1.012 0 010-.639C3.423 7.51 7.36 4.5 12 4.5c4.638 0 8.573 3.007 9.963 7.178.07.207.07.431 0 .639C20.577 16.49 16.64 19.5 12 19.5c-4.638 0-8.573-3.007-9.963-7.178z" /><path stroke-linecap="round" stroke-linejoin="round" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" /></svg>
+                                        <svg class="w-5 h-5 eye-closed hidden" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M3.98 8.223A10.477 10.477 0 001.934 12C3.226 16.338 7.244 19.5 12 19.5c.993 0 1.953-.138 2.863-.395M6.228 6.228A10.45 10.45 0 0112 4.5c4.756 0 8.773 3.162 10.065 7.498a10.523 10.523 0 01-4.293 5.774M6.228 6.228L3 3m3.228 3.228l3.65 3.65m7.894 7.894L21 21m-3.228-3.228l-3.65-3.65m0 0a3 3 0 10-4.243-4.243m4.243 4.243l-4.243-4.243" /></svg>
+                                    </button>
+                                    <button onclick="copyToClipboard('${student.password}')" class="text-gray-400 hover:text-blue-500" title="Salin Password">
+                                        <svg class="w-5 h-5" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M15.75 17.25v3.375c0 .621-.504 1.125-1.125 1.125h-9.75a1.125 1.125 0 01-1.125-1.125V7.875c0-.621.504-1.125 1.125-1.125H6.75a9.06 9.06 0 011.5.124m7.5 10.376h3.375c.621 0 1.125-.504 1.125-1.125V11.25c0-4.46-3.243-8.161-7.5-8.876a9.06 9.06 0 00-1.5-.124H9.375c-.621 0-1.125.504-1.125 1.125v3.5m7.5 10.375H9.375a1.125 1.125 0 01-1.125-1.125v-9.25m12 6.625v-1.875a3.375 3.375 0 00-3.375-3.375h-1.5a1.125 1.125 0 01-1.125-1.125v-1.5a3.375 3.375 0 00-3.375-3.375H9.75" /></svg>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="bg-gray-50 p-6 border-t">
+                        <h3 class="font-bold mb-2 text-gray-800">Jadwal Ujian</h3>
+                        <table class="w-full text-left text-sm">
+                            <thead class="text-gray-500">
+                                <tr><th class="pb-1">Tanggal</th><th class="pb-1">Mata Pelajaran</th><th class="pb-1">Waktu</th></tr>
+                            </thead>
+                            <tbody>
+                                <tr class="border-b"><td class="py-2">28-07-2025</td><td class="py-2">Literasi & Survei Karakter</td><td class="py-2">${student.waktuSesi}</td></tr>
+                                <tr><td class="pt-2">29-07-2025</td><td class="pt-2">Numerasi & Survei Lingkungan Belajar</td><td class="pt-2">${student.waktuSesi}</td></tr>
+                            </tbody>
+                        </table>
+                    </div>
+                `;
+          cardsContainer.appendChild(card);
+        });
+
+        // Re-add event listeners for password toggles
+        addPasswordToggleListeners();
+      };
+
+      /**
+       * Filters and renders cards based on search term and active session filter.
+       */
+      const filterAndRender = () => {
+        const searchTerm = searchInput.value.toLowerCase();
+
+        const filteredData = studentData.filter((student) => {
+          const matchesSearch =
+            student.nama.toLowerCase().includes(searchTerm) ||
+            student.nisn.includes(searchTerm);
+          const matchesFilter =
+            activeFilter === "semua" || student.sesi == activeFilter;
+          return matchesSearch && matchesFilter;
+        });
+
+        renderCards(filteredData);
+      };
+
+      /**
+       * Adds event listeners to all password toggle buttons.
+       */
+      function addPasswordToggleListeners() {
+        document.querySelectorAll(".toggle-password").forEach((button) => {
+          button.addEventListener("click", () => {
+            const passwordField = button.previousElementSibling;
+            const eyeOpen = button.querySelector(".eye-open");
+            const eyeClosed = button.querySelector(".eye-closed");
+
+            if (passwordField.textContent === "••••••") {
+              passwordField.textContent = passwordField.dataset.password;
+              eyeOpen.classList.add("hidden");
+              eyeClosed.classList.remove("hidden");
+            } else {
+              passwordField.textContent = "••••••";
+              eyeOpen.classList.remove("hidden");
+              eyeClosed.classList.add("hidden");
+            }
+          });
+        });
+      }
+
+      // Event Listener for search input
+      searchInput.addEventListener("input", filterAndRender);
+
+      // Event Listener for mobile filter toggle button
+      filterToggleButton.addEventListener("click", () => {
+        filterPanel.classList.toggle("hidden");
+      });
+
+      // Event Listeners for filter buttons
+      filterBtns.forEach((btn) => {
+        btn.addEventListener("click", () => {
+          // Update active filter state
+          activeFilter = btn.dataset.sesi;
+
+          // Update button styles
+          filterBtns.forEach((b) => {
+            b.classList.remove("bg-blue-500", "text-white", "shadow");
+            b.classList.add("bg-gray-200", "text-gray-700");
+          });
+          btn.classList.add("bg-blue-500", "text-white", "shadow");
+          btn.classList.remove("bg-gray-200", "text-gray-700");
+
+          // Hide panel on mobile after selection
+          if (window.innerWidth < 768) {
+            // 768px is the md breakpoint in Tailwind
+            filterPanel.classList.add("hidden");
+          }
+
+          // Re-render cards
+          filterAndRender();
+        });
+      });
+
+      // Initial render of all cards on page load
+      renderCards(studentData);
+    </script>
+  </body>
+</html>
