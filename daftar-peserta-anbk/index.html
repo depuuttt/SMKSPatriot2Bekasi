@@ -1,0 +1,721 @@
+<!DOCTYPE html>
+<html lang="id" class="scroll-smooth">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title id="page-title">Daftar Peserta ANBK - SMKS Patriot 2 Bekasi</title>
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Google Fonts: Nunito -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200..1000;1,200..1000&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- Favicon Placeholder -->
+    <link
+      rel="icon"
+      href="https://placehold.co/32x32/3B82F6/FFFFFF?text=P"
+      type="image/png"
+    />
+
+    <!-- Custom Styles -->
+    <style>
+      body {
+        font-family: "Nunito", sans-serif;
+        background-color: #f3f4f6; /* bg-gray-100 */
+      }
+      /* Animasi fade-in sederhana */
+      @keyframes fadeIn {
+        from {
+          opacity: 0;
+          transform: translateY(20px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+      .fade-in {
+        animation: fadeIn 0.8s ease-out forwards;
+      }
+      /* Style untuk sorting icon */
+      .sortable {
+        cursor: pointer;
+        position: relative;
+        padding-right: 1.5rem; /* Space for icon */
+      }
+      .sortable::after,
+      .sortable::before {
+        content: "";
+        position: absolute;
+        right: 0.5rem;
+        font-size: 0.8em;
+        opacity: 0.4;
+        transition: opacity 0.2s;
+      }
+      .sortable::before {
+        content: "▲";
+        top: 0.5rem;
+      }
+      .sortable::after {
+        content: "▼";
+        bottom: 0.5rem;
+      }
+      .sortable.asc::before,
+      .sortable.desc::after {
+        opacity: 1;
+        color: #2563eb; /* text-blue-600 */
+      }
+    </style>
+  </head>
+  <body class="text-gray-800">
+    <!-- Header & Navigation -->
+    <header
+      id="header"
+      class="bg-white/80 backdrop-blur-lg shadow-sm sticky top-0 z-50"
+    >
+      <nav
+        class="container mx-auto px-6 py-4 flex justify-between items-center"
+      >
+        <!-- Logo dan Nama Sekolah -->
+        <a href="index.html" class="flex items-center gap-3">
+          <img
+            src="https://placehold.co/40x40/3B82F6/FFFFFF?text=P"
+            alt="Logo SMKS Patriot 2 Bekasi"
+            class="w-10 h-10 rounded-full"
+            onerror="this.onerror=null;this.src='https://placehold.co/40x40/3B82F6/FFFFFF?text=P';"
+          />
+          <span class="text-xl font-bold text-gray-900 hidden sm:block"
+            >SMKS Patriot 2</span
+          >
+        </a>
+
+        <!-- Menu Desktop -->
+        <div class="hidden md:flex items-center space-x-8">
+          <a
+            href="index.html#beranda"
+            class="text-gray-600 hover:text-blue-600 font-semibold"
+            >Beranda</a
+          >
+          <a
+            href="index.html#profil"
+            class="text-gray-600 hover:text-blue-600 font-semibold"
+            >Profil</a
+          >
+          <a
+            href="index.html#jurusan"
+            class="text-gray-600 hover:text-blue-600 font-semibold"
+            >Jurusan</a
+          >
+          <a
+            href="index.html#berita"
+            class="text-gray-600 hover:text-blue-600 font-semibold"
+            >Berita</a
+          >
+        </div>
+
+        <!-- Tombol Menu Mobile -->
+        <div class="md:hidden">
+          <button
+            id="mobile-menu-button"
+            class="text-gray-700 focus:outline-none"
+          >
+            <svg
+              class="w-7 h-7"
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke-width="1.5"
+              stroke="currentColor"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5"
+              />
+            </svg>
+          </button>
+        </div>
+      </nav>
+      <!-- Menu Mobile (Dropdown) -->
+      <div
+        id="mobile-menu"
+        class="hidden md:hidden bg-white border-t border-gray-200"
+      >
+        <a
+          href="index.html#beranda"
+          class="block py-3 px-6 text-gray-600 hover:bg-gray-50 font-semibold"
+          >Beranda</a
+        >
+        <a
+          href="index.html#profil"
+          class="block py-3 px-6 text-gray-600 hover:bg-gray-50 font-semibold"
+          >Profil</a
+        >
+        <a
+          href="index.html#jurusan"
+          class="block py-3 px-6 text-gray-600 hover:bg-gray-50 font-semibold"
+          >Jurusan</a
+        >
+        <a
+          href="index.html#berita"
+          class="block py-3 px-6 text-gray-600 hover:bg-gray-50 font-semibold"
+          >Berita</a
+        >
+      </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="container mx-auto px-6 py-12 md:py-20">
+      <div class="bg-white p-6 sm:p-8 rounded-2xl shadow-lg fade-in">
+        <!-- Judul dan Kontrol -->
+        <div
+          class="flex flex-col md:flex-row justify-between items-center mb-6 gap-4"
+        >
+          <div class="text-center md:text-left">
+            <h1
+              id="main-heading"
+              class="text-2xl sm:text-3xl font-bold text-gray-900"
+            >
+              <!-- Judul akan diisi oleh JavaScript -->
+            </h1>
+            <p class="text-gray-500 mt-1">
+              Total Peserta: <span id="total-peserta">0</span>
+            </p>
+          </div>
+          <!-- Search Input -->
+          <div class="relative w-full md:w-auto">
+            <input
+              type="text"
+              id="searchInput"
+              placeholder="Cari nama, username, atau sesi..."
+              class="w-full md:w-80 pl-10 pr-4 py-2.5 border border-gray-300 rounded-full focus:outline-none focus:ring-2 focus:ring-blue-500 transition-all"
+            />
+            <svg
+              class="w-5 h-5 text-gray-400 absolute left-3 top-1/2 -translate-y-1/2"
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke-width="1.5"
+              stroke="currentColor"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607z"
+              />
+            </svg>
+          </div>
+        </div>
+
+        <!-- Tabel Peserta -->
+        <div class="overflow-x-auto">
+          <table class="min-w-full divide-y divide-gray-200">
+            <thead class="bg-gray-50">
+              <tr>
+                <th
+                  scope="col"
+                  class="px-6 py-3 text-left text-xs font-bold text-gray-600 uppercase tracking-wider"
+                >
+                  No
+                </th>
+                <th
+                  scope="col"
+                  class="px-6 py-3 text-left text-xs font-bold text-gray-600 uppercase tracking-wider sortable"
+                  data-sort="username"
+                >
+                  Username
+                </th>
+                <th
+                  scope="col"
+                  class="px-6 py-3 text-left text-xs font-bold text-gray-600 uppercase tracking-wider sortable"
+                  data-sort="nama"
+                >
+                  Nama Peserta
+                </th>
+                <th
+                  scope="col"
+                  class="px-6 py-3 text-left text-xs font-bold text-gray-600 uppercase tracking-wider sortable"
+                  data-sort="sesi"
+                >
+                  Sesi
+                </th>
+              </tr>
+            </thead>
+            <tbody id="table-body" class="bg-white divide-y divide-gray-200">
+              <!-- Data akan diisi oleh JavaScript -->
+              <tr id="no-results" class="hidden">
+                <td colspan="4" class="px-6 py-10 text-center text-gray-500">
+                  Tidak ada hasil yang ditemukan.
+                </td>
+              </tr>
+              <tr id="loading-state">
+                <td colspan="4" class="px-6 py-10 text-center text-gray-500">
+                  Memuat data...
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </main>
+
+    <!-- Footer -->
+    <footer id="kontak" class="bg-gray-800 text-white mt-20">
+      <div class="container mx-auto px-6 py-12">
+        <div
+          class="mt-10 border-t border-gray-700 pt-6 text-center text-gray-500"
+        >
+          <p>
+            &copy; <span id="year"></span> SMKS Patriot 2 Bekasi. All rights
+            reserved.
+          </p>
+        </div>
+      </div>
+    </footer>
+
+    <script>
+      document.addEventListener("DOMContentLoaded", () => {
+        // --- Konfigurasi Dinamis ---
+        const anbkYear = 2025; // <<< UBAH TAHUN DI SINI
+
+        // --- Fungsionalitas Menu Mobile ---
+        const mobileMenuButton = document.getElementById("mobile-menu-button");
+        const mobileMenu = document.getElementById("mobile-menu");
+        if (mobileMenuButton) {
+          mobileMenuButton.addEventListener("click", () => {
+            mobileMenu.classList.toggle("hidden");
+          });
+        }
+
+        // --- Data Peserta ANBK (Data Mentah) ---
+        const pesertaData = [
+          // Sesi 1
+          {
+            no: 1,
+            username: "K0203011500018",
+            nama: "FADIA AZZAHRA (Cindy Anda Wali)",
+            sesi: 1,
+          },
+          {
+            no: 2,
+            username: "K0203011500027",
+            nama: "PUSPITA WAHYUNINGSIH",
+            sesi: 1,
+          },
+          {
+            no: 3,
+            username: "K0203011500036",
+            nama: "JASMINE FLANELLA A. P. (Kirani Arana)",
+            sesi: 1,
+          },
+          {
+            no: 4,
+            username: "K0203011500045",
+            nama: "Syarifah Syahara (Wulan Meryasih)",
+            sesi: 1,
+          },
+          {
+            no: 5,
+            username: "K0203011500054",
+            nama: "LUTFIAH KHAIRUNNISA",
+            sesi: 1,
+          },
+          {
+            no: 6,
+            username: "K0203011500063",
+            nama: "ANISAH REVIANI (Nayya Nazbillah Y.)",
+            sesi: 1,
+          },
+          { no: 7, username: "K0203011500072", nama: "KEISHA KIRANA", sesi: 1 },
+          {
+            no: 8,
+            username: "K0203011500089",
+            nama: "RIVI RANAYA ASARI",
+            sesi: 1,
+          },
+          {
+            no: 9,
+            username: "K0203011500098",
+            nama: "AULIA SHOFI LATHIFAH",
+            sesi: 1,
+          },
+          {
+            no: 10,
+            username: "K0203011500107",
+            nama: "MEI TIARA SYAH FITRI",
+            sesi: 1,
+          },
+          {
+            no: 11,
+            username: "K0203011500116",
+            nama: "SILMI LATHIFA ZAHRA",
+            sesi: 1,
+          },
+          {
+            no: 12,
+            username: "K0203011500125",
+            nama: "ZAFIRA SYAHWA HAFIDZA",
+            sesi: 1,
+          },
+          {
+            no: 13,
+            username: "K0203011500134",
+            nama: "BUNGA CAHAYA RAMADHAN",
+            sesi: 1,
+          },
+          {
+            no: 14,
+            username: "K0203011500143",
+            nama: "DIANDRA ROSELINE",
+            sesi: 1,
+          },
+          {
+            no: 15,
+            username: "K0203011500152",
+            nama: "JIHAN MAHESTY (Suci Ramadhani)",
+            sesi: 1,
+          },
+          // Sesi 2
+          { no: 16, username: "K0203011500169", nama: "SOFIA", sesi: 2 },
+          {
+            no: 17,
+            username: "K0203011500178",
+            nama: "SASKIA AULIA DINA (Marsya Putri P.)",
+            sesi: 2,
+          },
+          {
+            no: 18,
+            username: "K0203011500187",
+            nama: "NABILA AYUWANDITA",
+            sesi: 2,
+          },
+          {
+            no: 19,
+            username: "K0203011500196",
+            nama: "WULAN SETIYANI",
+            sesi: 2,
+          },
+          {
+            no: 20,
+            username: "K0203011500205",
+            nama: "MILANISTI KAYLA SABILA",
+            sesi: 2,
+          },
+          { no: 21, username: "K0203011500214", nama: "MELISA", sesi: 2 },
+          {
+            no: 22,
+            username: "K0203011500223",
+            nama: "PUSPITA WIANTI",
+            sesi: 2,
+          },
+          {
+            no: 23,
+            username: "K0203011500232",
+            nama: "Vina Eva Liana (Muhabbatun Wasiah)",
+            sesi: 2,
+          },
+          {
+            no: 24,
+            username: "K0203011500249",
+            nama: "Resi Aniyah (Nabila Zaskia M.)",
+            sesi: 2,
+          },
+          {
+            no: 25,
+            username: "K0203011500258",
+            nama: "ALYSSA PUTRI PERMANA (Neyzya Putri Fauziah)",
+            sesi: 2,
+          },
+          {
+            no: 26,
+            username: "K0203011500267",
+            nama: "ERNISSA NURUL HIDAYAH (Kayla Maulidina)",
+            sesi: 2,
+          },
+          { no: 27, username: "K0203011500276", nama: "Nur Azizah", sesi: 2 },
+          {
+            no: 28,
+            username: "K0203011500285",
+            nama: "NINDYA SYIFA AYUNDA",
+            sesi: 2,
+          },
+          {
+            no: 29,
+            username: "K0203011500294",
+            nama: "KANAYA CHESA PUTRI",
+            sesi: 2,
+          },
+          {
+            no: 30,
+            username: "K0203011500303",
+            nama: "Savera Leo Fitri",
+            sesi: 2,
+          },
+          // Sesi 3
+          { no: 31, username: "K0203011500312", nama: "TASYA", sesi: 3 },
+          {
+            no: 32,
+            username: "K0203011500329",
+            nama: "SALWA ASSYIFA",
+            sesi: 3,
+          },
+          {
+            no: 33,
+            username: "K0203011500338",
+            nama: "ZAELILA MEICHASYANAH",
+            sesi: 3,
+          },
+          { no: 34, username: "K0203011500347", nama: "Sesa Mayyori", sesi: 3 },
+          {
+            no: 35,
+            username: "K0203011500356",
+            nama: "NAFISAH ALIYYAH SUCI",
+            sesi: 3,
+          },
+          {
+            no: 36,
+            username: "K0203011500365",
+            nama: "Michelle Dini Stevani Imanuel",
+            sesi: 3,
+          },
+          {
+            no: 37,
+            username: "K0203011500374",
+            nama: "BUNGA RAHMA LESTARI",
+            sesi: 3,
+          },
+          {
+            no: 38,
+            username: "K0203011500383",
+            nama: "Dianah Safitri (Nazwa Dwi A.)",
+            sesi: 3,
+          },
+          {
+            no: 39,
+            username: "K0203011500392",
+            nama: "INTAN NURAENI",
+            sesi: 3,
+          },
+          {
+            no: 40,
+            username: "K0203011500409",
+            nama: "NAURA AULIA PUTRI",
+            sesi: 3,
+          },
+          {
+            no: 41,
+            username: "K0203011500418",
+            nama: "AN'NISA ISNA RIZA",
+            sesi: 3,
+          },
+          {
+            no: 42,
+            username: "K0203011500427",
+            nama: "BERTHA HANARIA OSSETRIX",
+            sesi: 3,
+          },
+          {
+            no: 43,
+            username: "K0203011500436",
+            nama: "Saskia Isnaini (Sazkiah Annaula Y.)",
+            sesi: 3,
+          },
+          {
+            no: 44,
+            username: "K0203011500445",
+            nama: "Reva Larasati (Laela Zahara)",
+            sesi: 3,
+          },
+          {
+            no: 45,
+            username: "K0203011500454",
+            nama: "JIHAN JULIYANTI (Della Tri Desmawati)",
+            sesi: 3,
+          },
+        ];
+
+        const tableBody = document.getElementById("table-body");
+        const searchInput = document.getElementById("searchInput");
+        const noResults = document.getElementById("no-results");
+        const loadingState = document.getElementById("loading-state");
+        const totalPesertaSpan = document.getElementById("total-peserta");
+        const pageTitle = document.getElementById("page-title");
+        const mainHeading = document.getElementById("main-heading");
+
+        let currentSort = { key: "no", order: "asc" };
+
+        // --- Fungsi untuk mengubah string ke Title Case ---
+        function toTitleCase(str) {
+          if (!str) return "";
+          return str.toLowerCase().replace(/\b(\w|')+\b/g, function (word) {
+            // Handle inisial seperti "A." atau "P."
+            if (word.length === 2 && word.endsWith(".")) {
+              return word.toUpperCase();
+            }
+            // Handle nama dengan apostrof seperti "An'nisa"
+            if (word.includes("'")) {
+              return word
+                .split("'")
+                .map((part) => part.charAt(0).toUpperCase() + part.slice(1))
+                .join("'");
+            }
+            return word.charAt(0).toUpperCase() + word.slice(1);
+          });
+        }
+
+        // --- Fungsi untuk merender tabel ---
+        function renderTable(data) {
+          tableBody.innerHTML = ""; // Kosongkan tabel
+          if (data.length === 0) {
+            noResults.classList.remove("hidden");
+          } else {
+            noResults.classList.add("hidden");
+          }
+
+          data.forEach((peserta) => {
+            const row = document.createElement("tr");
+            row.className = "hover:bg-gray-50 transition-colors";
+
+            // Parsing nama peserta dan pengganti
+            const namaRegex = /(.+)\s\((.+)\)/;
+            const match = peserta.nama.match(namaRegex);
+
+            let namaDisplay;
+            if (match) {
+              const namaUtama = toTitleCase(match[1].trim());
+              const namaPengganti = toTitleCase(match[2].trim());
+              namaDisplay = `
+                        <div>
+                            <span class="font-semibold text-gray-800">${namaUtama}</span>
+                            <div class="text-xs text-gray-500 italic mt-1">
+                                Pengganti: ${namaPengganti}
+                            </div>
+                        </div>
+                    `;
+            } else {
+              namaDisplay = `<span class="font-semibold text-gray-800">${toTitleCase(
+                peserta.nama
+              )}</span>`;
+            }
+
+            row.innerHTML = `
+                    <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900 align-top">${
+                      peserta.no
+                    }</td>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600 align-top">${
+                      peserta.username
+                    }</td>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm">${namaDisplay}</td>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600 align-top">
+                        <span class="px-3 py-1 inline-flex text-xs leading-5 font-semibold rounded-full ${
+                          peserta.sesi === 1
+                            ? "bg-blue-100 text-blue-800"
+                            : peserta.sesi === 2
+                            ? "bg-green-100 text-green-800"
+                            : "bg-yellow-100 text-yellow-800"
+                        }">
+                            Sesi ${peserta.sesi}
+                        </span>
+                    </td>
+                `;
+            tableBody.appendChild(row);
+          });
+        }
+
+        // --- Fungsi untuk sorting ---
+        function sortData(data, key, order) {
+          return [...data].sort((a, b) => {
+            let valA = a[key];
+            let valB = b[key];
+
+            if (typeof valA === "string") {
+              valA = valA.toLowerCase();
+              valB = valB.toLowerCase();
+            }
+
+            if (valA < valB) return order === "asc" ? -1 : 1;
+            if (valA > valB) return order === "asc" ? 1 : -1;
+            return 0;
+          });
+        }
+
+        // --- Event Listener untuk Search/Filter ---
+        searchInput.addEventListener("input", (e) => {
+          const searchTerm = e.target.value.toLowerCase();
+          const filteredData = pesertaData.filter((peserta) => {
+            return (
+              peserta.nama.toLowerCase().includes(searchTerm) ||
+              peserta.username.toLowerCase().includes(searchTerm) ||
+              `sesi ${peserta.sesi}`.includes(searchTerm)
+            );
+          });
+          const sortedData = sortData(
+            filteredData,
+            currentSort.key,
+            currentSort.order
+          );
+          renderTable(sortedData);
+        });
+
+        // --- Event Listener untuk Sorting ---
+        document.querySelectorAll(".sortable").forEach((header) => {
+          header.addEventListener("click", () => {
+            const sortKey = header.dataset.sort;
+            const currentOrder = header.classList.contains("asc")
+              ? "desc"
+              : "asc";
+
+            document
+              .querySelectorAll(".sortable")
+              .forEach((h) => h.classList.remove("asc", "desc"));
+            header.classList.add(currentOrder);
+
+            currentSort = { key: sortKey, order: currentOrder };
+
+            // Re-filter and re-sort
+            const searchTerm = searchInput.value.toLowerCase();
+            const filteredData = pesertaData.filter((peserta) => {
+              return (
+                peserta.nama.toLowerCase().includes(searchTerm) ||
+                peserta.username.toLowerCase().includes(searchTerm) ||
+                `sesi ${peserta.sesi}`.includes(searchTerm)
+              );
+            });
+            const sortedData = sortData(
+              filteredData,
+              currentSort.key,
+              currentSort.order
+            );
+            renderTable(sortedData);
+          });
+        });
+
+        // --- Inisialisasi Awal ---
+        function initializePage() {
+          // Set judul halaman dan heading utama
+          pageTitle.textContent = `Daftar Peserta ANBK ${anbkYear} - SMKS Patriot 2 Bekasi`;
+          mainHeading.textContent = `Daftar Peserta Gladi Bersih ANBK ${anbkYear}`;
+
+          // Sembunyikan loading state setelah data siap
+          loadingState.classList.add("hidden");
+          // Set total peserta
+          totalPesertaSpan.textContent = pesertaData.length;
+          // Render tabel awal
+          const initialSortedData = sortData(pesertaData, "no", "asc");
+          renderTable(initialSortedData);
+          // Set tahun di footer
+          document.getElementById("year").textContent =
+            new Date().getFullYear();
+        }
+
+        initializePage();
+      });
+    </script>
+  </body>
+</html>
