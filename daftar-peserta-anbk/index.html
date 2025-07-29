@@ -17,11 +17,7 @@
     />
 
     <!-- Favicon Placeholder -->
-    <link
-      rel="icon"
-      href="../assets/logo.png"
-      type="image/png"
-    />
+    <link rel="icon" href="../assets/logo.png" type="image/png" />
 
     <!-- Custom Styles -->
     <style>
@@ -98,24 +94,29 @@
         <!-- Menu Desktop -->
         <div class="hidden md:flex items-center space-x-8">
           <a
-            href="index.html#beranda"
+            href="../#beranda"
             class="text-gray-600 hover:text-blue-600 font-semibold"
             >Beranda</a
           >
           <a
-            href="index.html#profil"
+            href="../#profil"
             class="text-gray-600 hover:text-blue-600 font-semibold"
             >Profil</a
           >
           <a
-            href="index.html#jurusan"
+            href="../#jurusan"
             class="text-gray-600 hover:text-blue-600 font-semibold"
             >Jurusan</a
           >
           <a
-            href="index.html#berita"
+            href="../#berita"
             class="text-gray-600 hover:text-blue-600 font-semibold"
             >Berita</a
+          >
+          <a
+            href="#kontak"
+            class="bg-blue-600 text-white px-5 py-2 rounded-full hover:bg-blue-700 transition-colors duration-300 font-bold"
+            >Kontak</a
           >
         </div>
 
@@ -148,24 +149,29 @@
         class="hidden md:hidden bg-white border-t border-gray-200"
       >
         <a
-          href="index.html#beranda"
+          href="../#beranda"
           class="block py-3 px-6 text-gray-600 hover:bg-gray-50 font-semibold"
           >Beranda</a
         >
         <a
-          href="index.html#profil"
+          href="../#profil"
           class="block py-3 px-6 text-gray-600 hover:bg-gray-50 font-semibold"
           >Profil</a
         >
         <a
-          href="index.html#jurusan"
+          href="../#jurusan"
           class="block py-3 px-6 text-gray-600 hover:bg-gray-50 font-semibold"
           >Jurusan</a
         >
         <a
-          href="index.html#berita"
+          href="../#berita"
           class="block py-3 px-6 text-gray-600 hover:bg-gray-50 font-semibold"
           >Berita</a
+        >
+        <a
+          href="#kontak"
+          class="block py-3 px-6 text-blue-600 hover:bg-gray-50 font-bold"
+          >Kontak</a
         >
       </div>
     </header>
@@ -266,8 +272,67 @@
     </main>
 
     <!-- Footer -->
-    <footer id="kontak" class="bg-gray-800 text-white mt-20">
+    <footer id="kontak" class="bg-gray-800 text-white">
       <div class="container mx-auto px-6 py-12">
+        <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+          <!-- Tentang Sekolah -->
+          <div class="md:col-span-2">
+            <h4 class="text-xl font-bold mb-4">SMKS Patriot 2 Bekasi</h4>
+            <p class="text-gray-400">
+              Jl. Patriot No. 2, Jakasampurna, Kec. Bekasi Barat, Kota Bekasi,
+              Jawa Barat 17145.
+            </p>
+          </div>
+          <!-- Navigasi Cepat -->
+          <div>
+            <h4 class="text-xl font-bold mb-4">Tautan</h4>
+            <ul>
+              <li class="mb-2">
+                <a href="../#profil" class="text-gray-400 hover:text-white"
+                  >Profil Sekolah</a
+                >
+              </li>
+              <li class="mb-2">
+                <a href="../#jurusan" class="text-gray-400 hover:text-white"
+                  >Program Keahlian</a
+                >
+              </li>
+              <li class="mb-2">
+                <a href="../#berita" class="text-gray-400 hover:text-white"
+                  >Berita</a
+                >
+              </li>
+            </ul>
+          </div>
+          <!-- Kontak & Sosial Media -->
+          <div>
+            <h4 class="text-xl font-bold mb-4">Hubungi Kami</h4>
+            <p class="text-gray-400 mb-2">
+              Email: smkspatriot2bekasi@gmail.com
+            </p>
+            <p class="text-gray-400 mb-4">Telp: (021) 889656631</p>
+            <div class="flex space-x-4">
+              <a href="#" class="text-gray-400 hover:text-white"
+                ><svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
+                  <path
+                    d="M22.46,6C21.69,6.35 20.86,6.58 20,6.69C20.88,6.16 21.56,5.32 21.88,4.31C21.05,4.81 20.13,5.16 19.16,5.36C18.37,4.5 17.26,4 16,4C13.65,4 11.73,5.92 11.73,8.29C11.73,8.63 11.77,8.96 11.84,9.27C8.28,9.09 5.11,7.38 3,4.79C2.63,5.42 2.42,6.16 2.42,6.94C2.42,8.43 3.17,9.75 4.33,10.5C3.62,10.5 2.96,10.3 2.38,10C2.38,10 2.38,10 2.38,10.03C2.38,12.11 3.86,13.85 5.82,14.24C5.46,14.34 5.08,14.39 4.69,14.39C4.42,14.39 4.15,14.36 3.89,14.31C4.43,16 6,17.26 7.89,17.29C6.43,18.45 4.58,19.13 2.56,19.13C2.22,19.13 1.88,19.11 1.54,19.07C3.44,20.29 5.7,21 8.12,21C16,21 20.33,14.46 20.33,8.79C20.33,8.6 20.33,8.42 20.32,8.23C21.16,7.63 21.88,6.87 22.46,6Z"
+                  ></path></svg
+              ></a>
+              <a href="#" class="text-gray-400 hover:text-white"
+                ><svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
+                  <path
+                    d="M12,2.04C6.5,2.04 2,6.54 2,12.04C2,17.54 6.5,22.04 12,22.04C17.5,22.04 22,17.54 22,12.04C22,6.54 17.5,2.04 12,2.04M12,20.04C7.58,20.04 4,16.46 4,12.04C4,7.62 7.58,4.04 12,4.04C16.42,4.04 20,7.62 20,12.04C20,16.46 16.42,20.04 12,20.04M16.5,8.24C16.5,7.54 15.96,7 15.25,7H8.75C8.04,7 7.5,7.54 7.5,8.24V15.84C7.5,16.54 8.04,17.1 8.75,17.1H15.25C15.96,17.1 16.5,16.54 16.5,15.84V8.24M15,15.6H9V8.7H15V15.6Z"
+                  ></path></svg
+              ></a>
+              <a href="#" class="text-gray-400 hover:text-white"
+                ><svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
+                  <path
+                    d="M17,2V2H17V6H21V10H17V14H21V18H17V22H13V18H9V14H13V10H9V6H13V2H17M15,4H11V8H7V12H11V16H15V12H19V8H15V4Z"
+                  ></path></svg
+              ></a>
+            </div>
+          </div>
+        </div>
         <div
           class="mt-10 border-t border-gray-700 pt-6 text-center text-gray-500"
         >
@@ -292,6 +357,13 @@
             mobileMenu.classList.toggle("hidden");
           });
         }
+        // Menutup menu mobile saat link di-klik
+        const mobileMenuLinks = mobileMenu.querySelectorAll("a");
+        mobileMenuLinks.forEach((link) => {
+          link.addEventListener("click", () => {
+            mobileMenu.classList.add("hidden");
+          });
+        });
 
         // --- Data Peserta ANBK (Data Mentah) ---
         const pesertaData = [
